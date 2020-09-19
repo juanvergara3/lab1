@@ -3,10 +3,11 @@ using namespace std;
 
 int main()
 {
-    short selec = 0;
-    long int a,b;
+    short selec = 0, digit;
+    long int a,b, rev, temp;
     double res;
     float pi = 3.1416;
+    char c;
 
     while (selec != -1){
 
@@ -239,23 +240,73 @@ int main()
         break;
 
         case 19: //Ejercicio 19
+            b=0;
 
+            cout<<"Ingrese un numero: "; cin>>a;
+
+            if (a<0) cout<<"Los primos son enteros positivos!"<<endl;
+
+            else{
+                for(int k=2; k<=(a/2); k++){
+                    if((a%k)== 0){
+                        cout<<a<<" NO es primo"<<endl;
+                        b=1;
+                        break;
+                    }
+                }
+                if (b==0) cout<<a<<" es primo"<<endl;
+            }
         break;
 
         case 20: //Ejercicio 20
+                 cout << "Ingrese un numero positivo: "; cin >> a;
+
+                 if (a<0) cout<<"Los palindromos no pueden ser negativos!"<<endl;
+
+                 else{
+                     rev=0;
+                     b = a;
+
+                     while(a>0){
+                         digit = a % 10;
+                         rev = (rev * 10) + digit;
+                         a = a / 10;
+                     }
+
+                     if (b == rev || b==1 || b==0)
+                         cout <<b<< " es un numero palindromo"<<endl;
+                     else
+                         cout <<b<< " NO es un numero palindromo"<<endl;
+                 }
 
         break;
 
         case 21: //Ejercicio 21
+            cout << "Ingrese una letra: "; cin >> c;
+            a = int(c);
 
+            if (a>=97 && a<=122)  a -= 32;
+
+            else if (a>=65 && a<=90) a += 32;
+
+            else cout<<"No es una letra: ";
+
+            cout<<c<<"--->"<<char(a)<<endl;
         break;
 
         case 22: //Ejercicio 22
-
+            cout<<"Ingrese la cantidad de segundos: "; cin>>a;
+            if (a<0) cout<<"Ingrese un cantidad positiva!"<<endl;
+            else{
+                cout<<(a/60)/60<<':'<<(a/60)%60<<':'<<(a%60)%60<<endl;
+            }
         break;
 
         case 23: //Ejercicio 23
+            cout<<"Ingrese un numero: "; cin>>a;
+            cout<<"Ingrese otro numero: "; cin>>b;
 
+            cout<<"El MCM de "<<a<<" y "<<b<<" es: "<<rev<<endl; //sin terminar!!!!!
         break;
 
         case 24: //Ejercicio 24
@@ -263,6 +314,23 @@ int main()
         break;
 
         case 25: //Ejercicio 25
+            cout<<"Ingrese un numero: "; cin>>a;
+
+            if (a==0) cout<<"0 tiene 1 digito"<<endl;
+
+            else{
+                digit = 0;
+                cout<<a<<" tiene ";
+
+                if(a<0) a*= (-1);
+
+                while(a>0){
+                    a /= 10;
+                    digit++;
+                }
+
+                cout<<digit<<" digitos"<<endl;
+            }
 
         break;
 
