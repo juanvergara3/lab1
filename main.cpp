@@ -6,6 +6,7 @@ int main()
     short selec = 0;
     int long a,b;
     double res;
+    float pi = 3.1416;
 
     while (selec != -1){
 
@@ -13,14 +14,16 @@ int main()
         if (selec != -1) cout<<"\nEjercicio "<<selec<<"\n\n";
 
         switch (selec){
-        case 1:
-            cout<<"Ingrese A: "; cin>>a;
-            cout<<"Ingrese B: "; cin>>b;
+        case 1: //Ejercicio 1
+            cout<<"Ingrese el numerador: "; cin>>a;
+            cout<<"Ingrese el denominador: "; cin>>b;
 
-            cout<<"El residuo de "<<a<<'/'<<b<<" es: "<<a%b<<endl;
+            if (b == 0) cout<<"No definido!"<<endl;
+            else if (a<0 && b<0) cout<<"El residuo de "<<a<<'/'<<b<<" es: "<<(-1)*(a%b)<<endl;
+            else cout<<"El residuo de "<<a<<'/'<<b<<" es: "<<a%b<<endl;
         break;
 
-        case 2:
+        case 2: //Ejercicio 2
             cout<<"Ingrese un numero: "; cin>>a;
 
             if(a%2 == 0 && a!=0) cout<<a<<" es par"<<endl;
@@ -28,7 +31,7 @@ int main()
             else cout<<a<<" no es ni par ni impar"<<endl;
         break;
 
-        case 3:
+        case 3: //Ejercicio 3
             cout<<"Ingrese A: "; cin>>a;
             cout<<"Ingrese B: "; cin>>b;
 
@@ -39,7 +42,7 @@ int main()
             else  cout<<"Los 2 numeros son iguales"<<endl;
         break;
 
-        case 4:
+        case 4: //Ejercicio 4
             cout<<"Ingrese A: "; cin>>a;
             cout<<"Ingrese B: "; cin>>b;
 
@@ -50,17 +53,17 @@ int main()
             else  cout<<"Los 2 numeros son iguales"<<endl;
         break;
 
-        case 5:
-            cout<<"Ingrese A: "; cin>>a;
-            cout<<"Ingrese B: "; cin>>b;
-
-            cout<<a<<'/'<<b<<" = "<<a/b;
+        case 5: //Ejercicio 5
+            cout<<"Ingrese el numerador: "; cin>>a;
+            cout<<"Ingrese el denominador: "; cin>>b;
+            if (b == 0) cout<<"No definido!"<<endl;
+            else cout<<a<<'/'<<b<<" = "<<a/b<<" (con redondeo)"<<endl;
         break;
 
-        case 6:
+        case 6: //Ejercicio 6
             res =1;
-            cout<<"Ingrese A: "; cin>>a;
-            cout<<"Ingrese B: "; cin>>b;
+            cout<<"Ingrese la base: "; cin>>a;
+            cout<<"Ingrese el exponente: "; cin>>b;
 
             if (b==0 && a==0){
                 cout<<"La operacion no esta definida";
@@ -96,100 +99,140 @@ int main()
             }
         break;
 
-        case 7:
+        case 7: //Ejercicio 7
+            res = 0;
+            cout<<"Ingrese un numero: "; cin>>a;
+            cout<<"La suma de todos los numeros entre 0 y "<<a<<" es: ";
 
+            if (a > 0){
+                for (;a>0;a--){
+                    res += a;
+                }
+                cout<<res<<endl;
+            }
+            else if (a<0){
+                for (;a<0;a++){
+                    res += a;
+                }
+                cout<<res<<endl;
+            }
+            else cout<<0<<endl;
         break;
 
-        case 8:
+        case 8: //Ejercicio 8
+            res=1;
+            cout<<"Ingrese un numero: "; cin>>a;
+            cout<<a<<"! = ";
 
+            if (a>0) {
+                for(;a>0;a--)res *= a;
+                cout<<res<<endl;
+            }
+            else if (a<0) {
+                for(;a<0;a++)res *= a;
+                if (res>0) res *= -1;
+                cout<<res<<endl;
+            }
+            else cout<<res<<endl;
         break;
 
-        case 9:
-
+        case 9: //Ejercicio 9
+            cout<<"Ingrese el radio del circulo: "; cin>>a;
+            if (a<=0) cout<<"Ingrese un radio positivo!"<<endl;
+            else cout<<"El perimetro del circulo de radio "<<a<<" es: "<<2*pi*a<<endl;
         break;
 
-        case 10:
-
-        break;
-
-        case 11:
+        case 10: //Ejercicio 10
             cout<<"Ingrese N: "; cin>>a;
+            if (a<=0)cout<<"Ingrese un entero positivo!"<<endl;
+            else{
+                cout<<"Los multiplos de "<<a<<" menores que 100 son: "<<endl;
+                for(int k=1 ;k<100; k++){
+                    if (a*k >=100) break;
+                    cout<<a*k<<endl;
+                }
+            }
+
+        break;
+
+        case 11: //Ejercicio 11
+            cout<<"Ingrese un numero: "; cin>>a;
             for (int k=1;k<=10;k++) cout<<a<<" x "<<k<<" = "<<a*k<<endl;
         break;
 
-        case 12:
+        case 12: //Ejercicio 12
+            cout<<"Ingrese un numero: "; cin>>a;
+        break;
+
+        case 13: //Ejercicio 13
 
         break;
 
-        case 13:
+        case 14: //Ejercicio 14
 
         break;
 
-        case 14:
+        case 15: //Ejercicio 15
 
         break;
 
-        case 15:
+        case 16: //Ejercicio 16
 
         break;
 
-        case 16:
+        case 17: //Ejercicio 17
 
         break;
 
-        case 17:
+        case 18: //Ejercicio 18
 
         break;
 
-        case 18:
+        case 19: //Ejercicio 19
 
         break;
 
-        case 19:
+        case 20: //Ejercicio 20
 
         break;
 
-        case 20:
+        case 21: //Ejercicio 21
 
         break;
 
-        case 21:
+        case 22: //Ejercicio 22
 
         break;
 
-        case 22:
+        case 23: //Ejercicio 23
 
         break;
 
-        case 23:
+        case 24: //Ejercicio 24
 
         break;
 
-        case 24:
+        case 25: //Ejercicio 25
 
         break;
 
-        case 25:
+        case 26: //Ejercicio 26
 
         break;
 
-        case 26:
+        case 27: //Ejercicio 27
 
         break;
 
-        case 27:
+        case 28: //Ejercicio 28
 
         break;
 
-        case 28:
+        case 29: //Ejercicio 29
 
         break;
 
-        case 29:
-
-        break;
-
-        case 30:
+        case 30: //Ejercicio 30
 
         break;
 
