@@ -1,10 +1,12 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 int main()
 {
     short selec = 0, digit;
-    long int a,b, rev, temp;
+    long int a,b, rev, temp, temp2;
+    float d, e, f;
     double res;
     float pi = 3.1416;
     char c;
@@ -12,9 +14,14 @@ int main()
     while (selec != -1){
 
         cout<<"\nIngrese el ejercicio a ejecutar (-1 para ir a los problemas): "; cin>>selec;
-        if (selec != -1) cout<<"\nEjercicio "<<selec<<"\n\n";
+        if (selec != -1 && selec <=30 && selec>=1) cout<<"\nEjercicio "<<selec<<"\n\n";
 
         switch (selec){
+
+        default:
+            cout<<"ejercicio no definido!"<<endl;
+        break;
+
         case 1: //Ejercicio 1
             cout<<"Ingrese el numerador: "; cin>>a;
             cout<<"Ingrese el denominador: "; cin>>b;
@@ -306,10 +313,34 @@ int main()
             cout<<"Ingrese un numero: "; cin>>a;
             cout<<"Ingrese otro numero: "; cin>>b;
 
-            cout<<"El MCM de "<<a<<" y "<<b<<" es: "<<rev<<endl; //sin terminar!!!!!
+            temp = a;
+            temp2 = b;
+
+            while(temp2 != 0){ //se halla el MCD
+                rev = temp2;
+                temp2 = temp%temp2;
+                temp = rev;
+            }
+
+            cout<<"El MCM de "<<a<<" y "<<b<<" es: "<<(a*b)/temp<<endl;
         break;
 
         case 24: //Ejercicio 24
+            cout<<"Ingrese el tamaño: "; cin>>a;
+
+            if(a>0){
+                for(b=0; b<a; b++) cout<<'+';
+
+                for(temp = a-2, cout<<endl; temp >0;temp--){
+                    cout<<'+';
+                    for (b = a-2; b>0 ;b--) cout<<' ';
+                    cout<<'+'<<endl;
+                }
+
+                for(b=0; b<a; b++) cout<<'+';
+            }
+            else cout<<"Ingrese un tamaño valido!"<<endl;
+
 
         break;
 
@@ -335,33 +366,208 @@ int main()
         break;
 
         case 26: //Ejercicio 26
+            cout<<"Ingrese el primer numero: "; cin>>d;
+            cout<<"Ingrese el segundo numero: "; cin>>e;
+            cout<<"Ingrese el tercer numero: "; cin>>f;
 
+            if(d>0 && e>0 && f>0){
+                if ((d+e>f) && (d+f>e) && (e+f>d)){ //teorema de la desigualdad del triángulo
+                    if (d==e && d==f && e == f) cout<<"Se forma un triangulo equilatero"<<endl;
+
+                    else if (d==e || d==f || e == f) cout<<"Se forma un triangulo isosceles"<<endl;
+
+                    else if (d!=e && d!=f && e != f) cout<<"Se forma un triangulo escaleno"<<endl;
+                }
+
+                else cout<<"Las longitudes ingresadas no forman un triangulo!"<<endl;
+            }
+
+            else cout<<"Ingrese longitudes validas! "<<endl;
         break;
 
         case 27: //Ejercicio 27
+            cout<<"Ingrese el primer numero: "; cin>>d;
+            cout<<"Ingrese el operando: "; cin>>c;
+            cout<<"Ingrese el segundo numero: "; cin>>e;
 
+            if (c == '+') cout<<d<<" + "<<e<<" = "<<d+e<<endl;
+
+            else if (c == '-') cout<<d<<" - "<<e<<" = "<<d-e<<endl;
+
+            else if (c == '*')  cout<<d<<" * "<<e<<" = "<<d*e<<endl;
+
+            else if (c == '/' && e != 0) cout<<d<<" / "<<e<<" = "<<d/e<<endl;
+
+            else cout<<"Error!";
         break;
 
         case 28: //Ejercicio 28
+            cout<<"Ingrese la cantidad de elementos usados para la aproximacion: "; cin>>a;
 
+            if (a>0){
+                res = 0;
+                d = 1;
+                b = 1;
+
+                for(;a>0; a--){
+
+                    if(b == 1) {
+                        res += 1/d;
+                        b = 0;
+                    }
+
+                    else if (b == 0){
+                        res -= 1/d;
+                        b = 1;
+                    }
+
+                    d += 2;
+                }
+                cout<<"Pi es aproximadamente: "<<4*res<<endl;
+            }
+
+            else cout<<"Ingrese un entero positivo!"<<endl;
         break;
 
         case 29: //Ejercicio 29
+            a = 0;
+            b=100;
 
+            cout<<"Piense en un numero entre 0 y 100"<<endl;
+            cout<<"Ingrese < si su numero es mayor que el que se muestra, > si es menor, o = si es igual: "<<endl;
+
+            while(true){
+                rev = (a+b)/2;
+                cout<<rev;
+                cin>>c;
+                if (c=='<'){
+                    a = rev;
+                }
+                else if (c=='>'){
+                    b = rev;
+                }
+                else if (c=='='){
+                    cout<<"su numero es "<<rev<<endl;
+                    break;
+                }
+
+                else cout<<"Ingrese una entrada valida!"<<endl;
+            }
         break;
 
         case 30: //Ejercicio 30
+            b = (rand() % 100);
+
+            cout<<"Debes adivinar X\n"<<endl;
+
+            while(true){
+                cout<<"Ingrese un numero (0-100): "; cin>>a;
+
+                if(a>=0 && a<=100){
+                    if(a>b)cout<<a<<" > X"<<endl;
+
+                    else if (a<b) cout<<a<<" < X"<<endl;
+
+                    else{
+                        cout<<"Adivinaste!"<<endl;
+                        break;
+                    }
+                }
+                else cout<<"Ingrese un numero en el rango!"<<endl;
+            }
 
         break;
 
         case -1:
             cout<<"\n"<<"Ahora ejecutando problemas: "<<endl;
+            break;
         break;
-
-        default:
-            cout<<"ejercicio no definido"<<endl;
-        break;
-
         }
     }
+
+    while(selec != -1){
+        cout<<"\nIngrese el problema a ejecutar (-1 para salir): "; cin>>selec;
+        if (selec != -1 && selec <=17 && selec>=1) cout<<"\nProblema "<<selec<<"\n\n";
+
+        switch (selec) {
+
+        default:
+            cout<<"ejercicio no definido!"<<endl;
+        break;
+
+        case 1: //Problema 1
+
+        break;
+
+        case 2: //Problema 2
+
+        break;
+
+        case 3: //Problema 3
+
+        break;
+
+        case 4: //Problema 4
+
+        break;
+
+        case 5: //Problema 5
+
+        break;
+
+        case 6: //Problema 6
+
+        break;
+
+        case 7: //Problema 7
+
+        break;
+
+        case 8: //Problema 8
+
+        break;
+
+        case 9: //Problema 9
+
+        break;
+
+        case 10: //Problema 10
+
+        break;
+
+        case 11: //Problema 11
+
+        break;
+
+        case 12: //Problema 12
+
+        break;
+
+        case 13: //Problema 13
+
+        break;
+
+        case 14: //Problema 14
+
+        break;
+
+        case 15: //Problema 15
+
+        break;
+
+        case 16: //Problema 16
+
+        break;
+
+        case 17: //Problema 17
+
+        break;
+
+        case -1:
+            cout<<"\n"<<"Saliendo..."<<endl;
+            break;
+        break;
+        }
+    }
+    return 0;
 }
