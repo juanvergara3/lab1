@@ -4,7 +4,7 @@ using namespace std;
 int main()
 {
     short selec = 0;
-    int long a,b;
+    long int a,b;
     double res;
     float pi = 3.1416;
 
@@ -162,30 +162,80 @@ int main()
 
         case 12: //Ejercicio 12
             cout<<"Ingrese un numero: "; cin>>a;
+
+            for (int k=1; k<=5; k++){
+                res = 1;
+                for(int i = k; i>0; i--) res *= a;
+
+                cout<<a<<'^'<<k<<" = "<<res<<endl;
+            }
         break;
 
         case 13: //Ejercicio 13
-
+            cout<<"Ingrese un numero(entero positivo): "; cin>>a;
+            if (a==0) cout<<"0 tiene infinitos divisores"<<endl;
+            else if (a>0){
+                for(int k = 1; k<=a; k++){
+                    if (a%k == 0) cout<<k<<endl;
+                }
+            }
+            else cout<<"Por favor ingrese un entero positivo!"<<endl;
         break;
 
         case 14: //Ejercicio 14
-
+            for(int k=1;k<=50;k++){
+                cout<<k<<"  "<<51-k<<endl;
+            }
         break;
 
         case 15: //Ejercicio 15
-
+            res = 0;
+            while(true){
+                cout<<"Ingrese un numero: "; cin>>a;
+                if(a == 0) break;
+                res += a;
+            }
+            cout<<"La suma de los numeros ingresados es: "<<res<<endl;
         break;
 
         case 16: //Ejercicio 16
-
+            res = 0;
+            b = 0;
+            while(true){
+                cout<<"Ingrese un numero: "; cin>>a;
+                if(a == 0) break;
+                res += a;
+                b++;
+            }
+            cout<<"El promedio de los numeros ingresados es: "<<res/b<<endl;
         break;
 
         case 17: //Ejercicio 17
-
+            b = -2147483648; //Menor valor posible para un long int
+            while(true){
+                cout<<"Ingrese un numero: "; cin>>a;
+                if(a == 0) break;
+                if (a>b) b=a;
+            }
+            cout<<"El mayor de los numeros ingresados es: "<<b<<endl;
         break;
 
         case 18: //Ejercicio 18
+            cout<<"Ingrese un numero: "; cin>>a;
+            b=0;
 
+            if (a<0) cout<<"No real!"<<endl;
+
+            else{
+                for(int k=1; k<=(a/2); k++){
+                    if(k*k == a){
+                        cout<<a<<" es un cuadrado perfecto"<<endl;
+                        b=1;
+                        break;
+                    }
+                }
+                if (b==0) cout<<a<<" no es un cuadrado perfecto"<<endl;
+            }
         break;
 
         case 19: //Ejercicio 19
