@@ -485,6 +485,8 @@ int main()
         }
     }
 
+    selec = 0;
+
     while(selec != -1){
         cout<<"\nIngrese el problema a ejecutar (-1 para salir): "; cin>>selec;
         if (selec != -1 && selec <=17 && selec>=1) cout<<"\nProblema "<<selec<<"\n\n";
@@ -496,7 +498,21 @@ int main()
         break;
 
         case 1: //Problema 1
+            cout<<"Ingrese una letra: "; cin>>c;
+            a = int(c);
 
+            if ((a>=65 && a<=90)||(a>=97 && a<=122)){
+
+                if (a>=97 && a<=122) a -= 32;
+
+                if (a==65 || a==69 || a==73 || a==79 || a==85){
+                cout<<c<<" es una vocal"<<endl;
+                }
+
+                else cout<<c<<" es una consonate"<<endl;
+            }
+
+            else cout<<"No es una letra!"<<endl;
         break;
 
         case 2: //Problema 2
