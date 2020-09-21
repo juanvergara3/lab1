@@ -14,7 +14,7 @@ int main()
     while (selec != -1){
 
         cout<<"\nIngrese el ejercicio a ejecutar (-1 para ir a los problemas): "; cin>>selec;
-        if (selec != -1 && selec <=30 && selec>=1) cout<<"\nEjercicio "<<selec<<"\n\n";
+        if (selec != -1 && selec <=30 && selec>=1) cout<<"\n**Ejercicio "<<selec<<"**\n\n";
 
         switch (selec){
 
@@ -485,11 +485,12 @@ int main()
         }
     }
 
+
     selec = 0;
 
-    while(selec != -1){
+    while(selec != -1){ //PROBLEMAS***********
         cout<<"\nIngrese el problema a ejecutar (-1 para salir): "; cin>>selec;
-        if (selec != -1 && selec <=17 && selec>=1) cout<<"\nProblema "<<selec<<"\n\n";
+        if (selec != -1 && selec <=17 && selec>=1) cout<<"\n**Problema "<<selec<<"**\n\n";
 
         switch (selec) {
 
@@ -521,6 +522,39 @@ int main()
 
         case 3: //Problema 3
 
+            a=0;
+
+            while(a != -1){
+                cout<<"Ingrese el mes (-1 para salir): "; cin>>a;
+
+                if (a>=1 && a<=12){
+                    cout<<"Ingrese el dia: "; cin>>b;
+                    if (b>=1 && b<=31){
+
+                        cout<<a<<'/'<<b;
+
+                        if (a==4 || a==6 || a==9 || a==11){ //meses de 30 dias
+                            if(b==31) cout<<" es una fecha invalida"<<endl;
+                            else cout<<" es una fecha valida"<<endl;
+                        }
+
+                        else if (a==2){ //febrero
+                            if (b == 29) cout<<" es una fecha valida en bisiesto"<<endl;
+                            else if (b<=28) cout<<" es una fecha valida"<<endl;
+                            else cout<<" es una fecha invalida"<<endl;
+                        }
+
+                        else{ //meses de 31 dias
+                            cout<<" es una fecha valida"<<endl;
+                        }
+
+                    }
+                    else cout<<b<<" es un dia invalido."<<endl;
+                }
+                else if (a == -1) cout<<"saliendo..."<<endl;
+
+                else cout<<a<<" es un mes invalido."<<endl;
+            }
         break;
 
         case 4: //Problema 4
@@ -528,10 +562,53 @@ int main()
         break;
 
         case 5: //Problema 5
+                cout<<"Ingrese el numero de filas: "; cin>>digit; //a = filas, b = columnas
 
+                if (digit%2 != 0){
+                    digit-=1;
+                    temp = digit/2; //"cantidad de espacios"
+
+                    for(int k = 1, a=0; a >= 0; a += k ){ //recorre filas
+
+                        if (a>=(digit/2)) k = -1; //revierte el avace del ciclo
+
+                        for(b = 0; b <= digit; b++){ //recorre columnas
+
+                            if(b<temp || b>digit-temp) cout << ' ';
+
+                            else if (b>=temp) cout << '*';
+                        }
+
+                        if (k==1) temp--; //decrece la cantidad de espacios hastq ue llega a la mitad
+                        else temp++; // aumenta la cantidad de espacios despues de la mitad
+
+                        cout<<endl;
+                    }
+                }
+                else cout<<"El numero de filas debe ser impar!"<<endl;
         break;
 
         case 6: //Problema 6
+            cout<<"Ingrese la cantidad de digitos para la aproximacion: ";cin>>a;
+
+            e = 0;
+
+            if (a>0){
+                for(int k = 0; k<a; k++){
+
+                    f=1;
+
+                    for(int m = k; m>0; m--){
+                        f *= m;
+                    }
+
+                    e += (1/f);
+                }
+
+                cout<<"e es aproximadamente: "<<e<<endl;
+
+            }
+            else cout<<"Ingrese una cantidad positiva!"<<endl;
 
         break;
 
@@ -544,7 +621,23 @@ int main()
         break;
 
         case 9: //Problema 9
+            rev=0;
+            temp = 1;
 
+            cout<<"Ingrese un numero: "; cin>>a;
+
+            if(a<0) a *= -1;
+
+            for(; a>0; (a /= 10)&&(temp = 1)){
+
+               digit = (a%10);
+
+               for(temp2 = digit ; temp2>0;--temp2){
+                    temp *= digit;
+               }
+               rev += temp;
+            }
+            cout<<"\nLa suma de la potencias de sus digitos es: "<<rev<<endl;
         break;
 
         case 10: //Problema 10
@@ -568,6 +661,47 @@ int main()
         break;
 
         case 15: //Problema 15
+            cout<<"Ingrese el numero de filas: "; cin>>digit; //a = filas, b = columnas
+
+            rev=(digit*digit)-(digit-1);
+
+            if (digit%2 != 0){
+
+                for(a=1; a <= digit; a++){ //recorre filas
+
+                    if (a==digit){
+                        rev = (digit*digit) - (digit+digit-2);
+                    }
+
+
+                    for(b = 1; b <= digit; b++){ //recorre columnas
+
+                        if(b==(digit/2)+1 && a==(digit/2)+1){
+                            cout<<1<<' ';
+                        }
+                        else cout<<"* ";
+
+                        /*if(a==1){ // primera fila
+                            cout<<rev<<' ';
+                            rev++;}
+
+                        else if (a==digit){ //ultima fila
+                            cout<<rev<<' ';
+                            rev--;}
+
+                        else {
+                                rev = digit;
+                            }*/
+
+                    }// final del for de columnas
+
+                    cout<<endl;
+
+                }// final del for de filas
+
+            }//final del if inicial
+
+            else cout<<"El numero de filas debe ser impar!"<<endl;
 
         break;
 
