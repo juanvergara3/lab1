@@ -3,16 +3,11 @@ using namespace std;
 
 int main()
 {
-    int fil, col, k, rev, count, i, j, mid, aug, loop, temp, aux;
+    int fil, col, k, count, i, j, aug, temp, aux;
     char alt;
     bool sum;
 
     cout<<"Ingrese el numero de filas: "; cin>>k;
-
-
-    mid = (k/2)+1;
-
-    rev=((k*k)-(k-1));
 
     if (k%2 != 0){
 
@@ -20,13 +15,14 @@ int main()
 
             for(col = 1; col <= k; col++){ //recorre columnas
 
-                for(count = 1, i=mid, j=mid, alt='j', aug=1, loop=0, temp = 0, sum=true, aux=1; loop <= k*k; loop++){ //calcula el numero que corresponde en base a la posicion
-
-                    temp++; //numero que se imprimira
+                for(count = 1, i=(k/2)+1, j=i, alt='j', aug=1, temp = 1, sum=true, aux=1; temp <= k*k; temp++){ //calcula el numero que corresponde en base a la posicion
 
                     if(i==fil && j==col){ //si coinciden las filas y columnas externas con las internas termina el ciclo
-                        rev = temp;
-                        loop=k*k;
+
+                        if (temp<10) cout<<temp<<"  ";
+                        else cout<<temp<<' ';
+
+                        temp=k*k;
                     }
 
                     if(alt=='j'){ //operaciones de columna
@@ -62,8 +58,7 @@ int main()
                     }
 
                     }// final del for maestro
-                if (rev<10) cout<<rev<<"  ";
-                else cout<<rev<<' ';
+
                 }// final del for de columnas
             cout<<endl;
             }// final del for de filas

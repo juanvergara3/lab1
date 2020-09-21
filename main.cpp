@@ -5,11 +5,12 @@ using namespace std;
 int main()
 {
     short selec = 0, digit;
-    long int a,b, rev, temp, temp2;
+    long int a,b, rev, temp, temp2, i, j, count, aux;
     float d, e, f;
     double res;
     float pi = 3.1416;
     char c;
+    bool sum;
 
     while (selec != -1){
 
@@ -663,41 +664,64 @@ int main()
         case 15: //Problema 15
             cout<<"Ingrese el numero de filas: "; cin>>digit; //a = filas, b = columnas
 
-            rev=(digit*digit)-(digit-1);
-
             if (digit%2 != 0){
 
-                for(a=1; a <= digit; a++){ //recorre filas
+                cout<<endl;
 
-                    if (a==digit){
-                        rev = (digit*digit) - (digit+digit-2);
-                    }
+                temp2 = 0; //suma de las diagonales
 
+                for(a=1; a<= digit; a++){ //recorre filas
 
                     for(b = 1; b <= digit; b++){ //recorre columnas
 
-                        if(b==(digit/2)+1 && a==(digit/2)+1){
-                            cout<<1<<' ';
-                        }
-                        else cout<<"* ";
+                        for(count = 1, i=(digit/2)+1, j=i, c='j', rev=1, temp = 1, sum=true, aux=1; temp <= digit*digit; temp++){ //calcula el numero que corresponde en base a la posicion
 
-                        /*if(a==1){ // primera fila
-                            cout<<rev<<' ';
-                            rev++;}
+                            if(i==a && j==b){ //si coinciden las filas y columnas externas con las internas termina el ciclo
 
-                        else if (a==digit){ //ultima fila
-                            cout<<rev<<' ';
-                            rev--;}
+                                if (temp<10) cout<<temp<<"  ";
+                                else cout<<temp<<' ';
 
-                        else {
-                                rev = digit;
-                            }*/
+                                if(a==b || a+b == digit+1) temp2 += temp; //si hace parte de una de las diagonales principal se suma
 
-                    }// final del for de columnas
+                                temp=digit*digit;
+                            }
 
+                            if(c=='j'){ //operaciones de columna
+
+                                if(sum==true) j++;
+                                else if(sum==false) j--;
+                            }
+
+                            else if(c=='i'){ //operaciones de fila
+
+                                 if(sum==true) i++;
+                                else if(sum==false) i--;
+                            }
+
+                            count++;
+                            aux++;
+
+                            if(aux > rev){ //alterna entre  filas y columnas; primero cada 2 operaciones, luego cada 4, cada 6, etc.
+
+                                if(c == 'i') c = 'j';
+                                else if (c == 'j') c = 'i';
+
+                                aux=1;
+                            }
+
+                            if (count > rev*2){
+                                count=1; //reseta el contador
+                                rev++; //cantidad de veces que se realiza una operacion
+                                sum = !sum; //alterna entre sumar o restar casa 2 iteraciones
+                            }
+
+                            }// final del for maestro
+
+                        }// final del for de columnas
                     cout<<endl;
+                    }// final del for de filas
 
-                }// final del for de filas
+                cout<<"\nLa suma de las diagonales es: "<<temp2<<endl;
 
             }//final del if inicial
 
