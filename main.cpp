@@ -615,6 +615,44 @@ int main()
 
         case 7: //Problema 7
 
+            //se usa un for para definir las variables grandes, ya que al terminar la ejecucion estas se eliminan automaticamente.
+
+            for( long long unsigned int term1, term2, large_count, large_sum, large_digit, large_temp; true; ){
+                cout<<"Ingrese la cantidad de terminos de la serie (<1134903171): "; cin>>large_digit;
+
+                if (large_digit <= 1134903171){ // si se ingresa un valor mayor puede salir negativo
+                    term1=1; term2=1;
+                    large_sum=0;
+
+                    for(large_count=0; large_count<large_digit-2; large_count++){
+
+                        large_temp = term1+term2;
+
+                        term1 = term2;
+
+                        term2 = large_temp;
+
+                        if(large_temp%2 == 0 && large_temp<large_digit && large_temp>0) large_sum += large_temp;
+
+                    }
+                    cout<<"El resultado de la suma es: "<<large_sum<<endl;
+                    break;
+                }
+
+                else if (large_digit >= 1134903171) {
+                    cout<<"La suma no es correcta debido a que el tamaño de los numeros de la serie excede el tamaño de los long long unsigned int"<<endl;
+                    break;
+                }
+
+                else {
+                    cout<<"Ingrese una cantidad positiva!"<<endl;
+                    break;
+                }
+            }
+
+
+
+
         break;
 
         case 8: //Problema 8
@@ -642,7 +680,34 @@ int main()
         break;
 
         case 10: //Problema 10
+            cout<<"Ingrese el primo que desea ver: ";cin>>a;
 
+            if(a>0){
+                temp = 1;
+                aux = 1;
+
+                for(count=0; count<a; ){ //cuenta  entre  1 y a
+
+                    aux++; //Potencial numero primo
+
+                    for(rev=2; rev<=(aux/2); rev++){ //verifica si es primo
+
+                        if(aux%rev==0) {// si es divisible por algun numero rompe el ciclo
+                            temp = 0;
+                            break;
+                        }
+
+                        else if(aux%rev != 0){
+                            temp = 1;
+                        }
+
+                    }
+                    if(temp != 0) count++;
+                }
+                cout<<"\nEl primo numero "<<a<<" es: "<<aux<<endl;
+            }
+
+            else cout<<"Ingrese una posicion valida!"<<endl;
         break;
 
         case 11: //Problema 11
@@ -650,11 +715,83 @@ int main()
         break;
 
         case 12: //Problema 12
+            cout<<"Ingrese el numero: ";cin>>a;
+
+            if(a>0){
+
+                temp=1;
+                aux = 0;
+                cout<<"El mayor factor primo de "<<a<<" es: ";
+
+                for(i = 2; i < a; i++) {
+
+                    if(a % i == 0){
+
+                        if(i==3) {
+                          temp=1;
+                        }
+
+                        for(rev = 2; rev <=  i/2; rev++){ //verifica si es primo
+
+                            if(i % rev == 0) {// si es divisible por algun numero rompe el ciclo
+                                temp = 0;
+                                break;
+                            }
+
+                            else if(i%rev != 0){
+                                temp = 1;
+                            }
+
+                        }
+
+                        if(temp != 0 && i > aux) {
+                            aux = i;
+                            temp=0;
+                        }
+                    }
+                }
+                if(aux == 0){
+                    cout << a << endl;
+                }
+                else cout << aux << endl;
+            }
+            else cout<<"Ingrese un numero positivo!"<<endl;
 
         break;
 
         case 13: //Problema 13
+            cout<<"Ingrese el numero: ";cin>>a;
 
+            if(a>0){
+                temp = 1;
+                aux = 2;
+                temp2=0;
+
+                for(; aux<a; aux++){ //cuenta  entre  1 y a
+
+
+                    for(rev=2; rev<=(aux/2); rev++){ //verifica si es primo
+
+                        if(aux%rev==0) {// si es divisible por algun numero rompe el ciclo
+                            temp = 0;
+                            break;
+                        }
+
+                        else if(aux%rev != 0){
+                            temp = 1;
+                        }
+
+                    }
+                    if(temp != 0) {
+                        count++;
+                        temp2+=aux;
+                    }
+
+                }
+                cout<<"\nLa suma de los primos menores a "<<a<<" es: "<<temp2<<endl;
+            }
+
+            else cout<<"Ingrese un numero positivo!"<<endl;
         break;
 
         case 14: //Problema 14
@@ -681,9 +818,9 @@ int main()
                                 if (temp<10) cout<<temp<<"  ";
                                 else cout<<temp<<' ';
 
-                                if(a==b || a+b == digit+1) temp2 += temp; //si hace parte de una de las diagonales principal se suma
+                                if(a==b || a+b == digit+1) temp2 += temp; //si hace parte de una de las diagonales se suma
 
-                                temp=digit*digit;
+                                temp=digit*digit; //rompe el ciclo
                             }
 
                             if(c=='j'){ //operaciones de columna
@@ -718,7 +855,9 @@ int main()
                             }// final del for maestro
 
                         }// final del for de columnas
+
                     cout<<endl;
+
                     }// final del for de filas
 
                 cout<<"\nLa suma de las diagonales es: "<<temp2<<endl;
@@ -726,7 +865,6 @@ int main()
             }//final del if inicial
 
             else cout<<"El numero de filas debe ser impar!"<<endl;
-
         break;
 
         case 16: //Problema 16
