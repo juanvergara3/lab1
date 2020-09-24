@@ -518,7 +518,23 @@ int main()
         break;
 
         case 2: //Problema 2
+            cout<<"Ingrese la catidad: ";cin>>a;
 
+            if(a>=0){
+                cout<<"50000: "<<a/50000<<endl; a %= 50000;
+                cout<<"20000: "<<a/20000<<endl; a %=20000;
+                cout<<"10000: "<<a/10000<<endl; a %= 10000;
+                cout<<"5000: "<<a/5000<<endl; a %= 5000;
+                cout<<"2000: "<<a/2000<<endl; a %= 2000;
+                cout<<"1000: "<<a/1000<<endl; a %= 1000;
+                cout<<"500: "<<a/500<<endl; a %= 500;
+                cout<<"200: "<<a/200<<endl; a %= 200;
+                cout<<"100: "<<a/100<<endl; a %= 100;
+                cout<<"50: "<<a/50<<endl; a %= 50;
+                cout<<"Faltante: "<<a<<endl;
+            }
+
+            else cout<<"Ingrese un cantidad positiva!"<<endl;
         break;
 
         case 3: //Problema 3
@@ -560,6 +576,36 @@ int main()
 
         case 4: //Problema 4
 
+            rev = 0; // dias
+            i = 0; // horas
+            j = 0; // minutos
+
+            cout<<"Ingrese la hora (Formato 24h): "; cin>>a;
+            cout<<"Ingrese la duracion (Formato 24h): "; cin>>b;
+
+
+            if(a>=0 && a<=2359 && b>=0 && b<=2359 && a%100<60 && b%100<60){// valida intervalos de tiempo
+
+                j = a%100 + b%100; //suma los minutos
+
+                if (j>=60){ //si son 60 minutos o mas, suma 1h y resta esos 60 minuntos
+                    i++;
+                    j -= 60;
+                }
+
+                i += a/100 + b/100; //suma las horas
+
+                if(i>=24){ // si son 24h o mas, suma 1 dia y resta esas 24 horas
+                    rev++;
+                    i -= 24;
+                }
+
+                if(rev>0) cout<<rev<<" dia y "<<i<<':'<<j<<endl; // si hay mas de 0 dias
+                else if (j >= 10) cout<<i<<':'<<j<<endl; // si son 10 minutos o mas
+                else cout<<i<<":0"<<j<<endl; // menos de 10 min
+
+            }
+            else cout<<"Ingrese tiempos validos!"<<endl;
         break;
 
         case 5: //Problema 5
@@ -649,10 +695,6 @@ int main()
                     break;
                 }
             }
-
-
-
-
         break;
 
         case 8: //Problema 8
@@ -725,7 +767,7 @@ int main()
 
                 for(i = 2; i < a; i++) {
 
-                    if(a % i == 0){
+                    if(a % i == 0){ //si i es un factor de a (no necesariamente primo
 
                         if(i==3) {
                           temp=1;
@@ -750,11 +792,15 @@ int main()
                         }
                     }
                 }
+
                 if(aux == 0){
-                    cout << a << endl;
+                    cout << a << endl; //si a es primo
                 }
+
                 else cout << aux << endl;
+
             }
+
             else cout<<"Ingrese un numero positivo!"<<endl;
 
         break;
@@ -872,6 +918,30 @@ int main()
         break;
 
         case 17: //Problema 17
+            cout<<"Ingrese la cantidad de divisores: "; cin>>a;
+
+            if(a>=0){
+                b = 0;
+                count = 0;
+
+                while(count<=a){
+
+                    b++;
+                    count = 0;
+                    rev = b*(b+1)/2; // calcula el b-esimo termino
+
+                    for(int k = 1; k<=rev; k++) { //divide rev por los numeros entre 1 y rev
+                        if (rev%k == 0) { // si es un divisor suma a count
+                            count++;
+                        }
+                    }
+
+                }
+                cout<<rev<<" tiene "<<count<<" divisores"<<endl;
+            }
+
+
+
 
         break;
 
