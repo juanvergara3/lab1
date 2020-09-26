@@ -698,7 +698,45 @@ int main()
         break;
 
         case 8: //Problema 8
+            cout<<"Ingrese 3 numeros: "; cin>>a>>b>>rev;
 
+            if(a>0 && b>0 && rev>a && rev>b ){
+                i = a;
+                j = b;
+                aux = 0;
+                sum = true;
+
+                for(int k = 2; ; k++){
+
+                    if(i<rev) { // multiplos de 'a'
+                        cout<<i<<'+';
+                        aux += i;
+                        i = k*a;
+                    }
+
+                    if ( i>=rev && sum == true){ // resetea el contador unicamente cuando los multiplos de 'a' sobrepasan el limite (para poder calcular los multiplos de 'b' desde el inicio)
+                        sum =false;
+                        k=2;
+                    }
+
+                    if(j<rev && i>=rev){ // multiplos de 'b'
+
+                        if(j%a != 0) { // si no esta repetido
+                            cout<<j<<'+';
+                            aux += j;
+                        }
+
+                        j = k*b;
+                    }
+
+                    if(j>=rev && i>=rev) break; // si ambos multiplos sobrepasan el  limite
+
+                }//final for
+
+                cout<<"\b = "<<aux<<endl; // imprime la suma
+            }
+
+            else cout<<"Ingrese entradas validas (el 3er numero debe ser mayor a los dos 1eros, que a su vez deben ser mayores que 0)"<<endl;
         break;
 
         case 9: //Problema 9
@@ -753,7 +791,32 @@ int main()
         break;
 
         case 11: //Problema 11
+            cout<<"Ingrese el numero: "; cin>>a;
 
+            if (a>0){
+
+                b = 1;
+                rev = 1;
+
+                cout<<"El MCM de todos los numero menores a "<<a<<" es: ";
+
+                for(; a>0; a--){
+
+                    temp = a;
+                    temp2 = b;
+
+                    while(temp != temp2) { // calcula el MCD
+                        if(temp > temp2)
+                            temp -= temp2;
+                        else
+                            temp2 -= temp;
+                    }
+
+                    b = (a*b)/temp; // formula para el MCM: (a*b)/MCD(a, b)
+                }
+                cout<<b<<endl;
+            }
+            else cout<<"Ingrese un entero positivo!"<<endl;
         break;
 
         case 12: //Problema 12
@@ -767,7 +830,7 @@ int main()
 
                 for(i = 2; i < a; i++) {
 
-                    if(a % i == 0){ //si i es un factor de a (no necesariamente primo
+                    if(a % i == 0){ //si i es un factor de a (no necesariamente primo)
 
                         if(i==3) {
                           temp=1;
@@ -842,6 +905,46 @@ int main()
 
         case 14: //Problema 14
 
+            cout<<"Si quiere ver todos los palindromos ingrese 'y', de lo contrario ingrese 'n': ";cin>>c;
+
+            /*
+            soy consciente de que la solucion de fuerza bruta no es la mejor (~406.000 iteraciones), pero no pude encontrar ninguna documentacion
+            sobre metodos para calcular numeros palindromos como multiplicacion de numeros de 3 cifras.
+            */
+
+            a = 999;
+            b = 999;
+            temp2 = 0;
+            count = 0;
+
+            while(a>99 && b>99){
+
+                for(; b>99; b--){
+
+                    temp = a*b;
+                    aux = temp;
+                    rev=0;
+
+                    while(temp>0){
+                        digit = temp % 10;
+                        rev = (rev * 10) + digit;
+                        temp = temp / 10;
+                    }
+                    if (aux == rev || aux==1 || aux==0) {
+
+                        if(c=='y') cout <<a<<'*'<<b<<" = "<<aux<<endl;
+
+                        if(aux>temp2) {
+                            temp2=aux;
+                            i =a; j = b;
+                        }
+                    }
+                }
+
+                b = a;
+                a--;
+            }
+            cout<<"\nEl palindromo mas grande como multiplicacion de numeros de 3 cifras es: "<<temp2<<" = "<<i<<'*'<<j<<endl;
         break;
 
         case 15: //Problema 15
@@ -914,13 +1017,76 @@ int main()
         break;
 
         case 16: //Problema 16
+            cout<<"Ingrese un numero: "; cin>>a;
 
+            if(a>0){
+                cout<<"si quiere ver todas las series ingrese 't', si solo quiere ver la mas larga ingrese 'm', y si no quiere ver ninguna ingrese 'n': "; cin>>c;
+
+                count = 0;
+                temp = 0;
+
+                for(; a>0; a--){
+
+                    b = a;
+
+                    while(true){
+
+                        if(c=='t') cout<<b<<' ';
+
+                        count++;
+
+                        if(b%2 == 0) b /= 2;
+
+                        else b = (3*b)+1;
+
+                        if (b==1) {
+                            count++;
+                            if(c=='t') cout<<'1'<<endl;
+                            break;
+                        }
+                    }
+
+                    if(temp<count) {
+                        temp = count;
+                        temp2 = a;
+                    }
+                    count = 0;
+                }
+
+                if(c == 'n' || c == 't') cout<<"La serie mas larga es con la semilla "<<temp2<<" y tiene "<<temp<<" terminos"<<endl;
+
+                if(c == 'm'){ //imprime la serie mas larga
+
+                    cout<<"La serie mas larga es con la semilla "<<temp2<<" y tiene "<<temp<<" terminos: "<<endl;
+
+                    a = temp2;
+                    b = a;
+
+                    while(true){
+
+                        cout<<b<<' ';
+
+                        count++;
+
+                        if(b%2 == 0) b /= 2;
+
+                        else b = (3*b)+1;
+
+                        if (b==1) {
+                            count++;
+                            cout<<'1'<<endl;
+                            break;
+                        }
+                    }
+                }
+            }
+            else cout<<"Ingrese una entrada valida!"<<endl;
         break;
 
         case 17: //Problema 17
             cout<<"Ingrese la cantidad de divisores: "; cin>>a;
 
-            if(a>=0){
+            if(a>=0){ //verica que sea un numero positivo
                 b = 0;
                 count = 0;
 
@@ -939,10 +1105,7 @@ int main()
                 }
                 cout<<rev<<" tiene "<<count<<" divisores"<<endl;
             }
-
-
-
-
+            else cout<<"Ingrese un cantidad positiva!"<<endl;
         break;
 
         case -1:
