@@ -20,7 +20,7 @@ int main()
         switch (selec){
 
         default:
-            cout<<"ejercicio no definido!"<<endl;
+            cout<<"Ejercicio no definido!"<<endl;
         break;
 
         case 1: //Ejercicio 1
@@ -70,24 +70,24 @@ int main()
         break;
 
         case 6: //Ejercicio 6
-            res =1;
             cout<<"Ingrese la base: "; cin>>a;
             cout<<"Ingrese el exponente: "; cin>>b;
+
+            res =1;
 
             if (b==0 && a==0){
                 cout<<"La operacion no esta definida";
             }
 
             else if (b==0 || a==1){
-                res = 1;
                 cout<<"\n"<<a<<'^'<<b<<" es igual a: ";
-                cout<<res<<endl;
+                if (a<0) cout<<"-1"<<endl;
+                else cout<<'1'<<endl;
             }
 
             else if (b==1 || a == 0){
-                res = a;
                 cout<<"\n"<<a<<'^'<<b<<" es igual a: ";
-                cout<<res<<endl;
+                cout<<a<<endl;
             }
 
             else if ( b>1){
@@ -99,12 +99,15 @@ int main()
             }
 
            else if (b<0){
-                a = 1/a;
-                b = (-1)*b;
-                for(;b>0;--b){
-                    res *= a;
+                cout<<"\n"<<a<<'^'<<b<<" es igual a: ";
+                d = a;
+                d = 1/d;
+                e = (-1)*b;
+                f = 1;
+                for(;e>0;--e){
+                    f *= d;
                 }
-                cout<<res<<endl;
+                cout<<f<<endl;
             }
         break;
 
@@ -131,31 +134,42 @@ int main()
         case 8: //Ejercicio 8
             res=1;
             cout<<"Ingrese un numero: "; cin>>a;
-            cout<<a<<"! = ";
 
             if (a>0) {
+                cout<<a<<"! = ";
                 for(;a>0;a--)res *= a;
                 cout<<res<<endl;
             }
-            else if (a<0) {
-                for(;a<0;a++)res *= a;
-                if (res>0) res *= -1;
+
+            else if (a<0) cout<<"No definido!"<<endl;
+
+            else {
+                cout<<a<<"! = ";
                 cout<<res<<endl;
             }
-            else cout<<res<<endl;
         break;
 
         case 9: //Ejercicio 9
             cout<<"Ingrese el radio del circulo: "; cin>>a;
+
             if (a<=0) cout<<"Ingrese un radio positivo!"<<endl;
-            else cout<<"El perimetro del circulo de radio "<<a<<" es: "<<2*pi*a<<endl;
+
+            else{
+                cout<<"El perimetro del circulo de radio "<<a<<" es: "<<2*pi*a<<endl;
+                cout<<"El area del circulo de radio "<<a<<" es: "<<pi*(a*a)<<endl;
+            }
         break;
 
         case 10: //Ejercicio 10
             cout<<"Ingrese N: "; cin>>a;
-            if (a<=0)cout<<"Ingrese un entero positivo!"<<endl;
+
+            if (a<=0) cout<<"Ingrese un entero positivo!"<<endl;
+
+            else if (a>=100) cout<<"No hay multiplos de "<<a<<" menores que 100"<<endl;
+
             else{
                 cout<<"Los multiplos de "<<a<<" menores que 100 son: "<<endl;
+
                 for(int k=1 ;k<100; k++){
                     if (a*k >=100) break;
                     cout<<a*k<<endl;
@@ -166,6 +180,7 @@ int main()
 
         case 11: //Ejercicio 11
             cout<<"Ingrese un numero: "; cin>>a;
+
             for (int k=1;k<=10;k++) cout<<a<<" x "<<k<<" = "<<a*k<<endl;
         break;
 
@@ -182,18 +197,23 @@ int main()
 
         case 13: //Ejercicio 13
             cout<<"Ingrese un numero(entero positivo): "; cin>>a;
+
             if (a==0) cout<<"0 tiene infinitos divisores"<<endl;
+
             else if (a>0){
                 for(int k = 1; k<=a; k++){
                     if (a%k == 0) cout<<k<<endl;
                 }
             }
+
             else cout<<"Por favor ingrese un entero positivo!"<<endl;
         break;
 
         case 14: //Ejercicio 14
             for(int k=1;k<=50;k++){
-                cout<<k<<"  "<<51-k<<endl;
+
+                if(k<10)  cout<<k<<"   "<<51-k<<endl;
+                else cout<<k<<"  "<<51-k<<endl;
             }
         break;
 
@@ -220,7 +240,8 @@ int main()
         break;
 
         case 17: //Ejercicio 17
-            b = -2147483648; //Menor valor posible para un long int
+            cout<<"Ingrese un numero: "; cin>>b;
+
             while(true){
                 cout<<"Ingrese un numero: "; cin>>a;
                 if(a == 0) break;
@@ -254,9 +275,11 @@ int main()
 
             if (a<0) cout<<"Los primos son enteros positivos!"<<endl;
 
+            else if (a == 1) cout<<a<<" es primo"<<endl;
+
             else{
                 for(int k=2; k<=(a/2); k++){
-                    if((a%k)== 0){
+                    if((a%k) == 0){
                         cout<<a<<" NO es primo"<<endl;
                         b=1;
                         break;
@@ -314,22 +337,27 @@ int main()
             cout<<"Ingrese un numero: "; cin>>a;
             cout<<"Ingrese otro numero: "; cin>>b;
 
-            temp = a;
-            temp2 = b;
+            if(a>0 && b>0){
+                temp = a;
+                temp2 = b;
 
-            while(temp2 != 0){ //se halla el MCD
-                rev = temp2;
-                temp2 = temp%temp2;
-                temp = rev;
+                while(temp2 != 0){ //se halla el MCD
+                    rev = temp2;
+                    temp2 = temp%temp2;
+                    temp = rev;
+                }
+
+                cout<<"El MCM de "<<a<<" y "<<b<<" es: "<<(a*b)/temp<<endl;
             }
 
-            cout<<"El MCM de "<<a<<" y "<<b<<" es: "<<(a*b)/temp<<endl;
+            else cout<<"Ingrese enteros positivos!"<<endl;
+
         break;
 
         case 24: //Ejercicio 24
             cout<<"Ingrese el tamaño: "; cin>>a;
 
-            if(a>0){
+            if(a>1){
                 for(b=0; b<a; b++) cout<<'+';
 
                 for(temp = a-2, cout<<endl; temp >0;temp--){
@@ -340,6 +368,9 @@ int main()
 
                 for(b=0; b<a; b++) cout<<'+';
             }
+
+            else if (a==1) cout<<'+'<<endl;
+
             else cout<<"Ingrese un tamaño valido!"<<endl;
 
 
@@ -361,7 +392,8 @@ int main()
                     digit++;
                 }
 
-                cout<<digit<<" digitos"<<endl;
+                if(digit == 1) cout<<digit<<" digito"<<endl;
+                else cout<<digit<<" digitos"<<endl;
             }
 
         break;
@@ -470,13 +502,12 @@ int main()
                     else if (a<b) cout<<a<<" < X"<<endl;
 
                     else{
-                        cout<<"Adivinaste!"<<endl;
+                        cout<<"\nAdivinaste!"<<endl;
                         break;
                     }
                 }
                 else cout<<"Ingrese un numero en el rango!"<<endl;
             }
-
         break;
 
         case -1:
@@ -496,7 +527,7 @@ int main()
         switch (selec) {
 
         default:
-            cout<<"ejercicio no definido!"<<endl;
+            cout<<"Problema no definido!"<<endl;
         break;
 
         case 1: //Problema 1
@@ -545,32 +576,35 @@ int main()
                 cout<<"Ingrese el mes (-1 para salir): "; cin>>a;
 
                 if (a>=1 && a<=12){
+
                     cout<<"Ingrese el dia: "; cin>>b;
+
                     if (b>=1 && b<=31){
 
-                        cout<<a<<'/'<<b;
+                        cout<<"\n"<<a<<'/'<<b;
 
                         if (a==4 || a==6 || a==9 || a==11){ //meses de 30 dias
-                            if(b==31) cout<<" es una fecha invalida"<<endl;
-                            else cout<<" es una fecha valida"<<endl;
+                            if(b==31) cout<<" es una fecha invalida\n"<<endl;
+                            else cout<<" es una fecha valida\n"<<endl;
                         }
 
                         else if (a==2){ //febrero
-                            if (b == 29) cout<<" es una fecha valida en bisiesto"<<endl;
-                            else if (b<=28) cout<<" es una fecha valida"<<endl;
-                            else cout<<" es una fecha invalida"<<endl;
+                            if (b == 29) cout<<" es una fecha valida en bisiesto\n"<<endl;
+                            else if (b<=28) cout<<" es una fecha valida\n"<<endl;
+                            else cout<<" es una fecha invalida\n"<<endl;
                         }
 
                         else{ //meses de 31 dias
-                            cout<<" es una fecha valida"<<endl;
+                            cout<<" es una fecha valida\n"<<endl;
                         }
 
                     }
-                    else cout<<b<<" es un dia invalido."<<endl;
+                    else cout<<b<<" es un dia invalido.\n"<<endl;
                 }
-                else if (a == -1) cout<<"saliendo..."<<endl;
 
-                else cout<<a<<" es un mes invalido."<<endl;
+                else if (a == -1) cout<<"saliendo...\n"<<endl;
+
+                else cout<<a<<" es un mes invalido.\n"<<endl;
             }
         break;
 
@@ -611,28 +645,31 @@ int main()
         case 5: //Problema 5
                 cout<<"Ingrese el numero de filas: "; cin>>digit; //a = filas, b = columnas
 
-                if (digit%2 != 0){
-                    digit-=1;
-                    temp = digit/2; //"cantidad de espacios"
+                if(digit>0){
+                    if (digit%2 != 0){ //verrifica que es impar
+                        digit--;
+                        temp = digit/2; //"cantidad de espacios"
 
-                    for(int k = 1, a=0; a >= 0; a += k ){ //recorre filas
+                        for(int k = 1, a=0; a >= 0; a += k ){ //recorre filas
 
-                        if (a>=(digit/2)) k = -1; //revierte el avace del ciclo
+                            if (a>=(digit/2)) k = -1; //revierte el avace del ciclo (espejo de la primera mitad de la figura)
 
-                        for(b = 0; b <= digit; b++){ //recorre columnas
+                            for(b = 0; b <= digit; b++){ //recorre columnas
 
-                            if(b<temp || b>digit-temp) cout << ' ';
+                                if(b<temp || b>digit-temp) cout << ' ';
 
-                            else if (b>=temp) cout << '*';
+                                else if (b>=temp) cout << '*';
+                            }
+
+                            if (k==1) temp--; //decrece la cantidad de espacios hastq ue llega a la mitad
+                            else temp++; // aumenta la cantidad de espacios despues de la mitad
+
+                            cout<<endl;
                         }
-
-                        if (k==1) temp--; //decrece la cantidad de espacios hastq ue llega a la mitad
-                        else temp++; // aumenta la cantidad de espacios despues de la mitad
-
-                        cout<<endl;
                     }
+                    else cout<<"El numero de filas debe ser impar!"<<endl;
                 }
-                else cout<<"El numero de filas debe ser impar!"<<endl;
+                else cout<<"Ingrese un numero mayor que 0!"<<endl;
         break;
 
         case 6: //Problema 6
@@ -641,15 +678,14 @@ int main()
             e = 0;
 
             if (a>0){
-                for(int k = 0; k<a; k++){
 
-                    f=1;
+                for(int k = 0; k<a; k++){ //cuenta entre 1 y a
 
-                    for(int m = k; m>0; m--){
-                        f *= m;
-                    }
+                    f=1; //resetea el factorial
 
-                    e += (1/f);
+                    for(int m = k; m>0; m--) f *= m; //calcula el factorial
+
+                    e += (1/f); //suma la fraccion a e
                 }
 
                 cout<<"e es aproximadamente: "<<e<<endl;
@@ -664,13 +700,13 @@ int main()
             //se usa un for para definir las variables grandes, ya que al terminar la ejecucion estas se eliminan automaticamente.
 
             for( long long unsigned int term1, term2, large_count, large_sum, large_digit, large_temp; true; ){
-                cout<<"Ingrese la cantidad de terminos de la serie (<1134903171): "; cin>>large_digit;
+                cout<<"Ingrese la cantidad de terminos de la serie : "; cin>>large_digit;
 
-                if (large_digit <= 1134903171){ // si se ingresa un valor mayor puede salir negativo
+                if (large_digit <= 1134903171 && large_digit>0){ // si se ingresa un valor mayor puede salir negativo gracias a que se sale del rango de la variable
                     term1=1; term2=1;
                     large_sum=0;
 
-                    for(large_count=0; large_count<large_digit-2; large_count++){
+                    for(large_count=0; large_count<large_digit-2; large_count++){ //calcula la serie de fibonacci
 
                         large_temp = term1+term2;
 
@@ -700,7 +736,7 @@ int main()
         case 8: //Problema 8
             cout<<"Ingrese 3 numeros: "; cin>>a>>b>>rev;
 
-            if(a>0 && b>0 && rev>a && rev>b ){
+            if(a>0 && b>0 && rev>a && rev>b ){ //verifica que a y b sean mayores a 0 y que sean menores a rev
                 i = a;
                 j = b;
                 aux = 0;
@@ -715,11 +751,11 @@ int main()
                     }
 
                     if ( i>=rev && sum == true){ // resetea el contador unicamente cuando los multiplos de 'a' sobrepasan el limite (para poder calcular los multiplos de 'b' desde el inicio)
-                        sum =false;
-                        k=2;
+                        sum = false;
+                        k = 2;
                     }
 
-                    if(j<rev && i>=rev){ // multiplos de 'b'
+                    if(j<rev && sum == false){ // multiplos de 'b'
 
                         if(j%a != 0) { // si no esta repetido
                             cout<<j<<'+';
@@ -745,16 +781,16 @@ int main()
 
             cout<<"Ingrese un numero: "; cin>>a;
 
-            if(a<0) a *= -1;
+            if(a<0) a *= -1; //si es negativo lo vuelve positivo
 
-            for(; a>0; (a /= 10)&&(temp = 1)){
+            for(; a>0; (a /= 10)&&(temp = 1)){ //en cada ciclo le quita un digito a 'a' y resetea temp
 
-               digit = (a%10);
+               digit = (a%10); //captura un digito de a
 
-               for(temp2 = digit ; temp2>0;--temp2){
+               for(temp2 = digit ; temp2>0; --temp2){ // calcula la potencia en temp
                     temp *= digit;
                }
-               rev += temp;
+               rev += temp; //suma temp al total
             }
             cout<<"\nLa suma de la potencias de sus digitos es: "<<rev<<endl;
         break;
@@ -782,7 +818,7 @@ int main()
                         }
 
                     }
-                    if(temp != 0) count++;
+                    if(temp != 0) count++; //si es un primo suma al contador
                 }
                 cout<<"\nEl primo numero "<<a<<" es: "<<aux<<endl;
             }
@@ -805,7 +841,7 @@ int main()
                     temp = a;
                     temp2 = b;
 
-                    while(temp != temp2) { // calcula el MCD
+                    while(temp != temp2) { // calcula el MCD entre a y b
                         if(temp > temp2)
                             temp -= temp2;
                         else
@@ -814,29 +850,27 @@ int main()
 
                     b = (a*b)/temp; // formula para el MCM: (a*b)/MCD(a, b)
                 }
+
                 cout<<b<<endl;
             }
+
             else cout<<"Ingrese un entero positivo!"<<endl;
         break;
 
         case 12: //Problema 12
             cout<<"Ingrese el numero: ";cin>>a;
 
-            if(a>0){
+            if(a>1){
 
                 temp=1;
                 aux = 0;
                 cout<<"El mayor factor primo de "<<a<<" es: ";
 
-                for(i = 2; i < a; i++) {
+                for(i = 2; i < a; i++) { //itera entre 2 y a
 
                     if(a % i == 0){ //si i es un factor de a (no necesariamente primo)
 
-                        if(i==3) {
-                          temp=1;
-                        }
-
-                        for(rev = 2; rev <=  i/2; rev++){ //verifica si es primo
+                        for(rev = 2; rev <=  i-1; rev++){ //verifica si es primo
 
                             if(i % rev == 0) {// si es divisible por algun numero rompe el ciclo
                                 temp = 0;
@@ -849,20 +883,20 @@ int main()
 
                         }
 
-                        if(temp != 0 && i > aux) {
+                        if(temp != 0 && i > aux) { //si es un factor primo, y es mayor que el factor primo anterior
                             aux = i;
                             temp=0;
                         }
                     }
                 }
 
-                if(aux == 0){
-                    cout << a << endl; //si a es primo
-                }
+                if(aux == 0) cout << a << endl; // si 'a' es primo
 
-                else cout << aux << endl;
+                else cout << aux << endl; // si 'a' no es primo
 
             }
+
+            else if(a==1) cout<<"1 no tiene factores primos"<<endl;
 
             else cout<<"Ingrese un numero positivo!"<<endl;
 
@@ -917,7 +951,7 @@ int main()
             temp2 = 0;
             count = 0;
 
-            while(a>99 && b>99){
+            while(a>99 && b>99){ //no se usan numeros con menos de 3 cifras
 
                 for(; b>99; b--){
 
@@ -925,7 +959,7 @@ int main()
                     aux = temp;
                     rev=0;
 
-                    while(temp>0){
+                    while(temp>0){ //verifica si es palindromo
                         digit = temp % 10;
                         rev = (rev * 10) + digit;
                         temp = temp / 10;
@@ -934,7 +968,7 @@ int main()
 
                         if(c=='y') cout <<a<<'*'<<b<<" = "<<aux<<endl;
 
-                        if(aux>temp2) {
+                        if(aux>temp2) { //si el palindromo es mayor al anterior este se guarda junto con los numeros que lo generan
                             temp2=aux;
                             i =a; j = b;
                         }
@@ -950,7 +984,7 @@ int main()
         case 15: //Problema 15
             cout<<"Ingrese el numero de filas: "; cin>>digit; //a = filas, b = columnas
 
-            if (digit%2 != 0){
+            if (digit%2 != 0){ //verifica que sea un numero impar de filas
 
                 cout<<endl;
 
@@ -962,7 +996,7 @@ int main()
 
                         for(count = 1, i=(digit/2)+1, j=i, c='j', rev=1, temp = 1, sum=true, aux=1; temp <= digit*digit; temp++){ //calcula el numero que corresponde en base a la posicion
 
-                            if(i==a && j==b){ //si coinciden las filas y columnas externas con las internas termina el ciclo
+                            if(i==a && j==b){ //si coinciden las filas y columnas "externas" con las "internas" termina el ciclo
 
                                 if (temp<10) cout<<temp<<"  ";
                                 else cout<<temp<<' ';
@@ -1025,11 +1059,11 @@ int main()
                 count = 0;
                 temp = 0;
 
-                for(; a>0; a--){
+                for(; a>0; a--){ //prueba con todas las semillas menores a 'a'
 
                     b = a;
 
-                    while(true){
+                    while(true){ //se calcula la serie
 
                         if(c=='t') cout<<b<<' ';
 
@@ -1046,7 +1080,7 @@ int main()
                         }
                     }
 
-                    if(temp<count) {
+                    if(temp<count) { //si la serie tiene mas terminos que la anterior se guarda la semilla y la cantidad de terminos
                         temp = count;
                         temp2 = a;
                     }
@@ -1056,8 +1090,6 @@ int main()
                 if(c == 'n' || c == 't') cout<<"La serie mas larga es con la semilla "<<temp2<<" y tiene "<<temp<<" terminos"<<endl;
 
                 if(c == 'm'){ //imprime la serie mas larga
-
-                    cout<<"La serie mas larga es con la semilla "<<temp2<<" y tiene "<<temp<<" terminos: "<<endl;
 
                     a = temp2;
                     b = a;
@@ -1078,6 +1110,8 @@ int main()
                             break;
                         }
                     }
+                    cout<<"La serie mas larga es con la semilla "<<temp2<<" y tiene "<<temp<<" terminos"<<endl;
+
                 }
             }
             else cout<<"Ingrese una entrada valida!"<<endl;
@@ -1090,7 +1124,7 @@ int main()
                 b = 0;
                 count = 0;
 
-                while(count<=a){
+                while(count<=a){ //cuando el numero de divisores (count) supera a, se rompe el ciclo
 
                     b++;
                     count = 0;
@@ -1103,7 +1137,7 @@ int main()
                     }
 
                 }
-                cout<<rev<<" tiene "<<count<<" divisores"<<endl;
+                cout<<"El numero es: "<<rev<<" que tiene "<<count<<" divisores"<<endl;
             }
             else cout<<"Ingrese un cantidad positiva!"<<endl;
         break;
